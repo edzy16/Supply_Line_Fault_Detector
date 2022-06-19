@@ -52,13 +52,13 @@ void loop()
   float U = voltageSensor.getVoltageAC();
   RawValue = analogRead(analogIn);
   Voltage = (RawValue / 1024.0) * 5000; // Gets you mV
-  I = ((Voltage - ACSoffset) / mVperAmp);
+  I = ((Voltage - ACSoffset) / mVperAmp)-0.08;
 
   // To calculate the power we need voltage multiplied by current
   float P = U * I;
   
-/*lcd.println(String("U = ") + U + " V");
-  lcd.println(String("I = ") + I + " A");*/
+  Serial.println(String("U = ") + U + " V");
+  Serial.println(String("I = ") + I + " A");
   lcd.setCursor(0, 0);
   lcd.println(String("P = ") + P + " Watts");
   
