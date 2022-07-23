@@ -49,16 +49,27 @@ void loop()
   // By default 50Hz is used, but you can specify desired frequency
   // as first argument to getVoltageAC and getCurrentAC() method, if necessary
 
-  float U = voltageSensor.getVoltageAC()-0.5;
+  float U = voltageSensor.getVoltageAC();
   RawValue = analogRead(analogIn);
   Voltage = (RawValue / 1024.0) * 5000; // Gets you mV
-  I = ((Voltage - ACSoffset) / mVperAmp)-0.08;
+  I = ((Voltage - ACSoffset) / mVperAmp);
 
+  if (I<0){
+    I = 0;
+  }
+  else{
+    I=I/2;
+  }
+  U = (U*10)+90;
+  if (U<150){
+    U = 0;
+  }
   // To calculate the power we need voltage multiplied by current
   float P = U * I;
   
   Serial.println(String("U = ") + U + " V");
   Serial.println(String("I = ") + I + " A");
+  Serial.println(String("P = ") + P + " Watts");
   lcd.setCursor(0, 0);
   lcd.println(String("P = ") + P + " Watts");
   
