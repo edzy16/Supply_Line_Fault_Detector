@@ -26,7 +26,7 @@ double I = 0;
 const int rs = 12, en = 11, d4 = 5, d5 = 4, d6 = 3, d7 = 2;
 LiquidCrystal lcd(rs, en, d4, d5, d6, d7);
 
-SoftwareSerial mySerial(9, 10); // setting 9 & 10 for serial ports
+SoftwareSerial mySerial(9, 10); // setting 9 & 10 for serial ports. 9=TX , 10= RX
 
 void setup()
 {
@@ -62,13 +62,14 @@ void loop()
     I = 0;
   }
   else{
-    I=I/2;
+    I=0.03;
   }
   U = (U*10)+90;
   if (U<150){
     U = 0;
     I = 0;
   }
+ 
   // To calculate the power we need voltage multiplied by current
   float P = U * I;
   
@@ -80,10 +81,14 @@ void loop()
   
   delay(1000);
   
+<<<<<<< HEAD
  if (P<1000){
+=======
+  if (P<5){
+>>>>>>> 62a67799883b67a8efecf704c731ac77f5cf7541
     mySerial.println("AT+CMGF=1");    //Sets the GSM Module in Text Mode
     delay(1000);  // Delay of 1 second
-    mySerial.println("AT+CMGS=\"+918281306025\"\r"); // Replace x with mobile number
+    mySerial.println("AT+CMGS=\"+918129643065\"\r"); // Replace x with mobile number
     delay(1000);
     mySerial.println("Fault in the line");// The SMS text you want to send
     delay(100);
@@ -91,5 +96,3 @@ void loop()
     delay(1000);
   }
 }
-
-  
