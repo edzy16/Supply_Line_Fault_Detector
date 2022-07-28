@@ -62,7 +62,7 @@ void loop()
     I = 0;
   }
   else{
-    I=0.03;
+    I=I*0.001;
   }
   U = (U*10)+90;
   if (U<150){
@@ -81,11 +81,8 @@ void loop()
   
   delay(1000);
   
-<<<<<<< HEAD
  if (P<1000){
-=======
   if (P<5){
->>>>>>> 62a67799883b67a8efecf704c731ac77f5cf7541
     mySerial.println("AT+CMGF=1");    //Sets the GSM Module in Text Mode
     delay(1000);  // Delay of 1 second
     mySerial.println("AT+CMGS=\"+918129643065\"\r"); // Replace x with mobile number
@@ -95,4 +92,5 @@ void loop()
     mySerial.println((char)26);// ASCII code of CTRL+Z for saying the end of sms to  the module 
     delay(1000);
   }
+ }
 }
