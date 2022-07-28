@@ -80,7 +80,7 @@ void loop()
   
   delay(1000);
   
-  if (P<1000){
+ if (P<1000){
     mySerial.println("AT+CMGF=1");    //Sets the GSM Module in Text Mode
     delay(1000);  // Delay of 1 second
     mySerial.println("AT+CMGS=\"+918281306025\"\r"); // Replace x with mobile number
