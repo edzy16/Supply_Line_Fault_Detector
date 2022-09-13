@@ -65,7 +65,7 @@ void loop()
     I=I*0.001;
   }
   U = (U*10)+90;
-  if (U<150){
+  if (U<200){
     U = 0;
     I = 0;
   }
@@ -85,7 +85,7 @@ void loop()
   if (P<5){
     mySerial.println("AT+CMGF=1");    //Sets the GSM Module in Text Mode
     delay(1000);  // Delay of 1 second
-    mySerial.println("AT+CMGS=\"+918129643065\"\r"); // Replace x with mobile number
+    mySerial.println("AT+CMGS=\"+919447581855\"\r"); // Replace x with mobile number
     delay(1000);
     mySerial.println("Fault in the line");// The SMS text you want to send
     delay(100);
