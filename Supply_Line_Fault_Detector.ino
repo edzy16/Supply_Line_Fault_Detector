@@ -1,6 +1,6 @@
 #include "ZMPT101B.h"
 #include "ACS712.h"
-#include "LiquidCrystal.h"
+#include <LiquidCrystal_I2C.h>
 #include "SoftwareSerial.h"
 
 /*
@@ -24,7 +24,7 @@ double I = 0;
 // initialize the library by associating any needed LCD interface pin
 // with the arduino pin number it is connected to
 const int rs = 12, en = 11, d4 = 5, d5 = 4, d6 = 3, d7 = 2;
-LiquidCrystal lcd(rs, en, d4, d5, d6, d7);
+LiquidCrystal_I2C lcd(0x27,20,4);  // set the LCD address to 0x27 for a 16 chars and 2 line display
 
 SoftwareSerial mySerial(9, 10); // setting 9 & 10 for serial ports. 9=TX , 10= RX
 
@@ -33,13 +33,15 @@ void setup()
   mySerial.begin(9600);//setting the baud rate of GSM Module
   Serial.begin(9600); // open the serial port at 9600 bps:
   // set up the LCD's number of columns and rows:
-  lcd.begin(16, 2);
+  lcd.init();
+  lcd.backlight();
+  pinMode(5, OUTPUT);
   // calibrate() method calibrates zero point of sensor,
   // It is not necessary, but may positively affect the accuracy
   // Ensure that no current flows through the sensor at this moment
   // If you are not sure that the current through the sensor will not leak during calibration - comment out this method
   //lcd.print("Calibrating... Ensure that no current flows through the sensor at this moment");
-  
+  digitalWrite(5, LOW);
   delay(100);
   voltageSensor.calibrate();
   
@@ -81,16 +83,10 @@ void loop()
   
   delay(1000);
   
- if (P<1000){
-  if (P<5){
-    mySerial.println("AT+CMGF=1");    //Sets the GSM Module in Text Mode
-    delay(1000);  // Delay of 1 second
-    mySerial.println("AT+CMGS=\"+919447581855\"\r"); // Replace x with mobile number
-    delay(1000);
-    mySerial.println("Fault in the line");// The SMS text you want to send
-    delay(100);
-    mySerial.println((char)26);// ASCII code of CTRL+Z for saying the end of sms to  the module 
-    delay(1000);
-  }
+ if (U==0 || I==0) {
+   digitalWrite(5,HIGH);
  }
-}
+ else{
+   digitalWrite(5,LOW);
+  }
+ } 
