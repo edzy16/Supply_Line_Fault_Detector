@@ -1,12 +1,19 @@
 # Supply Line Fault Detector
-This is a project that I did for my third year in Engineering.In this project, a new power supply line fault detecting system is proposed. Using this we can monitor a single phase system, with the help of voltage and current sensors. The sensors will be installed on the transformers. Those will help in continuously monitoring the voltage and current of the supply line.Variations in the values of current voltage and frequency, from those values that are preset, will be notified as a fault.
-We use Arduino Uno as the heart of the project .It will process the data from
-the sensors and then send the information about the current status of the
-supply grid line to the supply office through a GSM module. Depending on
-the values obtained the cause for the fault can also be concluded and the
-same will be informed to the office.We can even break the connection if
-required.
-A monitoring system will be provided for the updating and visualization of
-the status. This helps the technician and administrators to monitor and know
-about the supply line status from their office itself. So the technicians can
-take immediate actions when an emergency situation arises.
+This is a project developed for third-year engineering students to monitor a single phase power supply system. The system uses voltage and current sensors installed on the transformers to continuously monitor the supply line. The sensors detect variations in the values of voltage, current, and frequency, and any deviation from the preset values is notified as a fault.
+Key Components
+
+    Arduino Uno
+    Voltage and Current Sensors
+    GSM Module
+    Monitoring System
+
+How it Works
+
+The Arduino Uno processes the data from the sensors and sends information about the current status of the supply grid line to the supply office via the GSM module. Depending on the values obtained, the cause of the fault can also be concluded and informed to the office. In case of an emergency, the connection can be broken, and a monitoring system will provide updates and visualizations of the status.
+Benefits
+
+This project helps technicians and administrators to monitor and keep track of the supply line status from their office, allowing them to take immediate actions in case of an emergency. The continuous monitoring of the supply line ensures that any faults are detected and addressed in a timely manner, improving the reliability and stability of the power supply system.
+
+Author
+
+    Edwin Siby
